@@ -75,7 +75,18 @@ pipeline {
         stage('Stop Previous Deployment') {
             steps {
                 echo '🛑 Stopping previous deployment...'
-                bat 'docker-compose down || exit 0'
+                script {
+                    try {
+                        bat 'docker-compose down -v'
+                    } catch (Exception e) {
+                        echo 'No previous deployment to stop'
+                    }
+                    try {
+                        bat 'docker system prune -f'
+                    } catch (Exception e) {
+                        echo 'System prune skipped'
+                    }
+                }
             }
         }
         
