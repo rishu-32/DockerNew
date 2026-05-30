@@ -1,0 +1,12 @@
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  application:
+    name: order-service
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/bookstore}
+
+jwt:
+  secret: ${JWT_SECRET:bookstore-devops-jwt-secret-key-2026-min-32-chars}
