@@ -7,6 +7,10 @@ pipeline {
         nodejs 'NodeJS-20'
     }
     
+    options {
+        skipDefaultCheckout()
+    }
+    
     environment {
         DOCKER_COMPOSE = 'docker-compose'
         JWT_SECRET = credentials('bookstore-jwt-secret')
